@@ -40,7 +40,7 @@ public class Hockeyfile extends AnimListener implements MouseMotionListener, Mou
 
         try {
 
-            audioStream = AudioSystem.getAudioInputStream(new File("Assets//song.wav"));
+            audioStream = AudioSystem.getAudioInputStream(new File("Assets//retro-city.wav"));
             clip = AudioSystem.getClip();
             clip.open(audioStream);
             clip.start();
@@ -113,7 +113,7 @@ public class Hockeyfile extends AnimListener implements MouseMotionListener, Mou
                     pos_bx += speedX;
                     pos_by += speedY;
                 }
-                ball = new rectangle(pos_bx - 5, pos_by + 15, 30, 30);
+                ball = new square(pos_bx - 5, pos_by + 15, 30, 30);
 
                 if(bot && !start){
                     bot();
@@ -335,38 +335,38 @@ public class Hockeyfile extends AnimListener implements MouseMotionListener, Mou
     }
 
     public boolean collision_up_left() {
-        return ball.intersect(new rectangle(pos_x1 - 20, pos_y1 + 40, 20, 20))
-                || ball.intersect(new rectangle(pos_x2 - 20, pos_y2 + 40, 20, 20));
+        return ball.intersect(new square(pos_x1 - 20, pos_y1 + 40, 20, 20))
+                || ball.intersect(new square(pos_x2 - 20, pos_y2 + 40, 20, 20));
     }
 
     public boolean collision_up() {
-        return ball.intersect(new rectangle(pos_x1 + 5 , pos_y1 + 40, 15, 15))
-                || ball.intersect(new rectangle(pos_x2 + 5 , pos_y2 + 40, 15, 15));
+        return ball.intersect(new square(pos_x1 + 5 , pos_y1 + 40, 15, 15))
+                || ball.intersect(new square(pos_x2 + 5 , pos_y2 + 40, 15, 15));
     }
 
     public boolean collision_up_right() {
-        return ball.intersect(new rectangle(pos_x1 + 15, pos_y1 + 40, 20, 20))
-                || ball.intersect(new rectangle(pos_x2 + 15, pos_y2 + 40, 20, 20));
+        return ball.intersect(new square(pos_x1 + 15, pos_y1 + 40, 20, 20))
+                || ball.intersect(new square(pos_x2 + 15, pos_y2 + 40, 20, 20));
     }
 
     public boolean collision_right() {
-        return ball.intersect(new rectangle(pos_x1 + 20, pos_y1 + 15, 15, 15))
-                || ball.intersect(new rectangle(pos_x2 + 20, pos_y2 + 15, 15, 15));
+        return ball.intersect(new square(pos_x1 + 20, pos_y1 + 15, 15, 15))
+                || ball.intersect(new square(pos_x2 + 20, pos_y2 + 15, 15, 15));
     }
 
     public boolean collision_down_right() {
-        return ball.intersect(new rectangle(pos_x1 + 15, pos_y1 , 20, 20))
-                || ball.intersect(new rectangle(pos_x2 + 15, pos_y2 , 20, 20));
+        return ball.intersect(new square(pos_x1 + 15, pos_y1 , 20, 20))
+                || ball.intersect(new square(pos_x2 + 15, pos_y2 , 20, 20));
     }
 
     public boolean collision_down() {
-        return ball.intersect(new rectangle(pos_x1 + 5 , pos_y1 , 15, 15))
-                || ball.intersect(new rectangle(pos_x2 + 5 , pos_y2 , 15, 15));
+        return ball.intersect(new square(pos_x1 + 5 , pos_y1 , 15, 15))
+                || ball.intersect(new square(pos_x2 + 5 , pos_y2 , 15, 15));
     }
 
     public boolean collision_down_left() {
-        return ball.intersect(new rectangle(pos_x1 - 20, pos_y1 , 20, 20))
-                || ball.intersect(new rectangle(pos_x2 - 20, pos_y2 , 20, 20));
+        return ball.intersect(new square(pos_x1 - 20, pos_y1 , 20, 20))
+                || ball.intersect(new square(pos_x2 - 20, pos_y2 , 20, 20));
 
     }
 
@@ -693,18 +693,18 @@ public class Hockeyfile extends AnimListener implements MouseMotionListener, Mou
     }
 }
 
-class rectangle {
+class square {
 
     int lx, ly, rx, ry;
 
-    rectangle(int x, int y, int width, int height) {
+    square(int x, int y, int width, int height) {
         lx = x;
         ly = y;
         rx = width + x;
         ry = y - height;
     }
 
-    boolean intersect(rectangle r) {
+    boolean intersect(square r) {
 
         if (lx > r.rx || r.lx > rx) {   //check if the rectangle is on the left side or the right side of the other rectangle
             return false;    //if not then go to the next condition
